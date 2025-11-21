@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Generate Placeholder Images</title>
+</head>
+
+<body>
+    <canvas id="canvas" width="800" height="600"></canvas>
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+
+        // Earthy color palette
+        const colors = {
+            terracotta: '#A6756C',
+            cream: '#F5F1E8',
+            darkBrown: '#6B4E45',
+            sage: '#9CAF88',
+            warmSand: '#D4B5A0',
+            clay: '#8B5E54'
+        };
+
+        function createGradient(color1, color2) {
+            const gradient = ctx.createLinearGradient(0, 0, 800, 600);
+            gradient.addColorStop(0, color1);
+            gradient.addColorStop(1, color2);
+            return gradient;
+        }
+
+        function createPlaceholder(name, text, color1, color2) {
+            ctx.fillStyle = createGradient(color1, color2);
+            ctx.fillRect(0, 0, 800, 600);
+
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+            ctx.font = 'bold 48px Arial';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText(text, 400, 300);
+
+            // Download
+            const link = document.createElement('a');
+            link.download = name + '.jpg';
+            link.href = canvas.toDataURL('image/jpeg');
+            link.click();
+        }
+
+        // Generate images
+        setTimeout(() => createPlaceholder('project-8', 'Architectural Portraits', colors.terracotta, colors.darkBrown), 100);
+        setTimeout(() => createPlaceholder('project-9', 'Future City Pavilion', colors.sage, colors.clay), 200);
+        setTimeout(() => createPlaceholder('project-10', 'Housing Challenge', colors.warmSand, colors.terracotta), 300);
+        setTimeout(() => createPlaceholder('project-11', 'Cultural Center', colors.darkBrown, colors.terracotta), 400);
+        setTimeout(() => createPlaceholder('project-12', 'Garden Villa', colors.cream, colors.sage), 500);
+        setTimeout(() => createPlaceholder('team-principal', 'Principal Architect', colors.terracotta, colors.clay), 600);
+        setTimeout(() => createPlaceholder('team-admin', 'Administrative Head', colors.sage, colors.warmSand), 700);
+        setTimeout(() => createPlaceholder('team-associate', 'Associate Architect', colors.clay, colors.darkBrown), 800);
+        setTimeout(() => createPlaceholder('blog-1', 'Natural Materials', colors.warmSand, colors.terracotta), 900);
+        setTimeout(() => createPlaceholder('blog-2', 'Collaborative Design', colors.sage, colors.clay), 1000);
+        setTimeout(() => createPlaceholder('blog-3', 'Sustainable Futures', colors.terracotta, colors.darkBrown), 1100);
+        setTimeout(() => createPlaceholder('vlog-1', 'Material Explorations', colors.clay, colors.warmSand), 1200);
+        setTimeout(() => createPlaceholder('vlog-2', 'Urban Villa', colors.darkBrown, colors.terracotta), 1300);
+        setTimeout(() => createPlaceholder('vlog-3', 'Furniture Workshop', colors.sage, colors.cream), 1400);
+    </script>
+</body>
+
+</html>
